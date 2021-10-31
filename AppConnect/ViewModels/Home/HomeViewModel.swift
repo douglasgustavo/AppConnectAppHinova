@@ -8,5 +8,10 @@
 import Foundation
 
 class HomeViewModel: ObservableObject {
+    let assocSrv: AssociadoService = AssociadoService()
+    let coreData: CoreDataService = CoreDataService()
     
+    func deslogarUsuario() {
+        coreData.deslogarAssociadoCoreData()
+    }
 }

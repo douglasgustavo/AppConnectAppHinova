@@ -1,5 +1,5 @@
 //
-//  IndicacaoView.swift
+//  OficinasView.swift
 //  AppConnect
 //
 //  Created by Douglas Santos on 31/10/21.
@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct IndicacaoView: View {
-    @StateObject var vm: IndicacaoViewModel = IndicacaoViewModel()
+struct OficinasView: View {
+    @StateObject var vm: OficinasViewModel = OficinasViewModel()
     
     var body: some View {
         ZStack{
-            Text("Indicacao")
+            Text("Oficinas")
         }
         .environmentObject(vm)
     }
 }
 
-struct IndicacaoView_Previews: PreviewProvider {
+struct OficinasView_Previews: PreviewProvider {
     static var previews: some View {
-        IndicacaoView()
+        OficinasView()
     }
 }

@@ -9,4 +9,5 @@ import Foundation
 
 class UsuarioStateObject: ObservableObject {
     @Published var usuarioEstaLogado: Bool = false
+    @Published var usuarioLogado: AssociadoModel = AssociadoModel(cpf: "", nome: "", email: "", telefoneCelular: "", telefoneFixo: "", veiculos: [])
 }
