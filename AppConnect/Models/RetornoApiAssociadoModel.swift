@@ -8,9 +8,9 @@
 import Foundation
 
 struct RetornoApiAssociadoModel: Codable {
-    let mensagem: String?
-    let tokenUsuario: String?
-    let error: ErroRetornoApiAssociado?
+    var mensagem: String?
+    var tokenUsuario: String?
+    var error: ErroRetornoApiAssociado?
     
     enum CodingKeys: String, CodingKey {
         case mensagem
@@ -20,8 +20,8 @@ struct RetornoApiAssociadoModel: Codable {
 }
 
 struct ErroRetornoApiAssociado: Codable {
-    let mensagem: String?
-    let codigoErro: String?
+    var mensagem: String?
+    var codigoErro: String?
     
     enum CodingKeys: String, CodingKey {
         case mensagem

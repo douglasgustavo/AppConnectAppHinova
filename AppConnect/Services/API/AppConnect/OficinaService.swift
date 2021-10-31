@@ -10,9 +10,9 @@ import Alamofire
 
 class OficinaService {
     
-    static func obterOficinas(cpfAssociado: String, completion: @escaping (OficinaModel) -> Void) {
+    func obterOficinas(cpfAssociado: String, completion: @escaping (OficinaModel) -> Void) {
         
-        AF.request("\(Constantes.URL_BASE_APPCONNECT)/Api/Oficina?codigoAssociacao=1951&cpfAssociado=\(cpfAssociado)",
+        AF.request("\(Constantes.URL_BASE_APPCONNECT)/Api/Oficina?codigoAssociacao=601&cpfAssociado=\(cpfAssociado)",
                    method: .get,
                    headers: HTTPHeaders(["Content-Type": "application/json"]))
             .responseData { response in

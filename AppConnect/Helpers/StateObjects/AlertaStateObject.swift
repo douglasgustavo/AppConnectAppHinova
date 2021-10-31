@@ -13,5 +13,4 @@ class AlertaStateObject: ObservableObject {
     @Published var txtTitulo: String = ""
     @Published var txtSubTitulo: String = ""
     @Published var tipoAlerta: AlertToast.AlertType = .error(.red)
-    @Published var duracao: Double = 2
 }

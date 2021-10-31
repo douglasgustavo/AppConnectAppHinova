@@ -8,8 +8,8 @@
 import Foundation
 
 struct RetornoIndicacaoModel: Codable {
-    let retornoErro: RetornoErro
-    let sucesso: String?
+    var retornoErro: RetornoErro
+    var sucesso: String?
     
     enum CodingKeys: String, CodingKey {
         case retornoErro = "RetornoErro"
@@ -18,7 +18,7 @@ struct RetornoIndicacaoModel: Codable {
 }
 
 struct RetornoErro: Codable {
-    let retornoErro: String?
+    var retornoErro: String?
     
     enum CodingKeys: String, CodingKey {
         case retornoErro

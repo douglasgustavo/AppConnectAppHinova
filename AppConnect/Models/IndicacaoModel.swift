@@ -7,9 +7,9 @@
 
 import Foundation
 
-class IndicacaoModel: Codable {
-    let indicacao: Indicacao
-    let remetente: String?
+struct IndicacaoModel: Codable {
+    var indicacao: Indicacao?
+    var remetente: String?
     
     enum CodingKeys: String, CodingKey {
         case indicacao = "Indicacao"
@@ -18,9 +18,9 @@ class IndicacaoModel: Codable {
 }
 
 struct Indicacao: Codable {
-    let codigoAssociacao, dataCriacao, cpfAssociado, emailAssociado: String?
-    let nomeAssociado, telefoneAssociado, placaAssociado, nomeAmigo: String?
-    let telefoneAmigo, emailAmigo: String?
+    var codigoAssociacao, dataCriacao, cpfAssociado, emailAssociado: String?
+    var nomeAssociado, telefoneAssociado, placaAssociado, nomeAmigo: String?
+    var telefoneAmigo, emailAmigo: String?
     
     enum CodingKeys: String, CodingKey {
         case codigoAssociacao = "CodigoAssociacao"

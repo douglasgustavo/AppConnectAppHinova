@@ -15,18 +15,26 @@ struct HomeView: View {
     let assService: AssociadoService = AssociadoService()
     
     var body: some View {
-            VStack{
-                Text("Home View")
-                Button {
-                    self.vm.deslogarUsuario()
-                    self.loginState.usuarioEstaLogado = false
-                } label: {
-                    Text("Sair")
+            TabView {
+                NavigationView {
+                    OficinasView()
                 }
-
+                .tabItem {
+                    Label("Oficinas", systemImage: "car")
+                }
+                .tag(0)
+                
+                NavigationView {
+                    IndicacaoView()
+                }
+                .tabItem {
+                    Label("Indique um Amigo", systemImage: "person.2.wave.2")
+                }
+                .tag(1)
+                    
             }
             .environmentObject(vm)
-            .navigationTitle("Home")
+            
         }
     }
 

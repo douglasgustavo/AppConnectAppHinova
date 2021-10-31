@@ -10,16 +10,17 @@ import Alamofire
 
 class IndicacaoService {
     
-    static func indicarAmigo(indicado: IndicacaoModel, completion: @escaping (RetornoIndicacaoModel) -> Void) {
+    func indicarAmigo(indicado: IndicacaoModel, completion: @escaping (RetornoIndicacaoModel) -> Void) {
         
         AF.request("\(Constantes.URL_BASE_APPCONNECT)/api/Indicacao",
                    method: .post,
                    parameters: indicado,
-                   headers: HTTPHeaders(["Content-Type": "application/json"]))
+                   encoder: URLEncodedFormParameterEncoder(destination: .httpBody))
             .responseData { response in
             
             if let data = response.data {
                 do {
+                    debugPrint(response.debugDescription)
                     let dados = try JSONDecoder().decode(RetornoIndicacaoModel.self, from: data)
                     completion(dados)
                 } catch let error {

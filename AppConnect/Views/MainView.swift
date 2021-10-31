@@ -17,19 +17,17 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
-                if usuario.usuarioEstaLogado {
-                    HomeView()
-                } else {
-                    LoginView()
-                }
+            if usuario.usuarioEstaLogado {
+                HomeView()
+            } else {
+                LoginView()
             }
             alertaView
         }
         .environmentObject(usuario)
         .environmentObject(alerta)
         .environmentObject(vm)
-        .toast(isPresenting: $alerta.estaMostrando, duration: 2, tapToDismiss: true) {
+        .toast(isPresenting: $alerta.estaMostrando) {
             verificaAlerta()
         }
         .onAppear(perform: obterUsuarioLogado)

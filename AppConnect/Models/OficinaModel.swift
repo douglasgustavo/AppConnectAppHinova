@@ -8,7 +8,7 @@
 import Foundation
 
 struct OficinaModel: Codable {
-    let listaOficinas: [ListaOficina]
+    var listaOficinas: [ListaOficina]?
 
     enum CodingKeys: String, CodingKey {
         case listaOficinas = "ListaOficinas"
@@ -16,12 +16,12 @@ struct OficinaModel: Codable {
 }
 
 struct ListaOficina: Codable {
-    let id: Int
-    let nome, descricao, descricaoCurta, endereco: String
-    let latitude, longitude, foto: String
-    let avaliacaoUsuario, codigoAssociacao: Int
-    let email, telefone1, telefone2: String?
-    let ativo: Bool
+    var id: Int
+    var nome, descricao, descricaoCurta, endereco: String?
+    var latitude, longitude, foto: String?
+    var avaliacaoUsuario, codigoAssociacao: Int?
+    var email, telefone1, telefone2: String?
+    var ativo: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id = "Id"
