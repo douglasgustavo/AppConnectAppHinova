@@ -1,0 +1,6 @@
+framework module Pods_AppConnect {
+  umbrella header "Pods-AppConnect-umbrella.h"
+
+  export *
+  module * { export * }
+}

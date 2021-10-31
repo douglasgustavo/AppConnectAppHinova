@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var usuario: UsuarioStateObject
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if usuario.usuarioEstaLogado {
+            HomeView()
+        } else {
+            LoginView()
+        }
     }
 }
 

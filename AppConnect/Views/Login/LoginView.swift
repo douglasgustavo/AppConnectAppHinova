@@ -9,9 +9,13 @@ import SwiftUI
 
 struct LoginView: View {
     @StateObject var vm: LoginViewModel = LoginViewModel()
+    @StateObject var loginState = UsuarioStateObject()
     
     var body: some View {
-        Text("Login")
+        VStack{
+            
+        }
+        .environmentObject(loginState)
     }
 }
 
