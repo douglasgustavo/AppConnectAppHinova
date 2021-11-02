@@ -1,8 +1,8 @@
 //
-//  LoginView.swift
+//  NewLoginView.swift
 //  AppConnect
 //
-//  Created by Douglas Santos on 31/10/21.
+//  Created by Douglas Santos on 02/11/21.
 //
 
 import SwiftUI
@@ -13,67 +13,95 @@ struct LoginView: View {
     @EnvironmentObject var alerta: AlertaStateObject
     
     var body: some View {
-        ZStack{
-            LinearGradient(gradient: Gradient(colors: [Color("azulHinova").opacity(0.1), Color("azulHinova").opacity(0.05)]), startPoint: .topTrailing, endPoint: .bottomLeading)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack (spacing: 30){
-                VStack{
-                    Spacer()
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 150)
-                    
-                    HStack (spacing: 0){
-                        Text("APP")
-                            .font(.system(size: 40, weight: .bold, design: .default))
-                        Text("Connect")
-                            .font(.system(size: 40, weight: .regular, design: .default))
-                    }
-                    .foregroundColor(Color("azulHinova"))
-                    
-                }
-                Spacer()
-                
-                
-                TextField("Digite seu CPF", text: $vm.cpfAssociado)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(15)
-                    .frame(width: UIScreen.main.bounds.width - 40, height: 55, alignment: .center)
-                    .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 5, y: 5)
-                    .keyboardType(.numberPad)
-                
-                Spacer()
-                
-                Button {
-                    UIApplication.shared.fechaTeclado()
-                    if verificaCampoCpf() {
-                        logaUsuario()
-                    }
-                } label: {
-                    Text("Entrar")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: UIScreen.main.bounds.width - 40, height: 55, alignment: .center)
-                        .background(Color("azulHinova"))
-                        .cornerRadius(15)
-                        .shadow(color: Color.gray.opacity(0.4), radius: 5, x: 5, y: 5)
-                }
-                Spacer()
-                Spacer()
-            }
+        VStack{
+            headerTelaLogin
+            campoInput
         }
-        .environmentObject(vm)
-        .navigationTitle("Login")
+        .keyboardResponsive()
+        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .preferredColorScheme(.dark)
+    }
+}
+
+extension LoginView {
+    var headerTelaLogin: some View {
+        ZStack{
+            Image("fundo")
+                .resizable()
+                .scaledToFill()
+            
+            Rectangle()
+                .fill(Color.principal.opacity(0.7))
+                
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+        }
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2.5)
+    }
+}
+
+extension LoginView {
+    var campoInput: some View {
+        ZStack{
+            Rectangle()
+                .fill(Color.white)
+                .cornerRadius(30, corners: [.topLeft, .topRight])
+                .padding(.top, -40)
+            campos
+        }
+    }
+}
+
+extension LoginView {
+    var campos: some View {
+        VStack (alignment: .leading){
+            VStack(alignment: .leading){
+                Text("Login")
+                    .font(.title)
+                    .foregroundColor(Color.txtPrincipal)
+                
+                Text("Bem vindo à Hinova Mobile!")
+                    .font(.headline)
+                    .foregroundColor(Color.txtSecundario)
+            }
+            Spacer()
+            VStack{
+                TextFieldPadrao(
+                    textoDigitado: self.$vm.cpfAssociado,
+                    label: "CPF",
+                    placeholder: "Digite seu CPF",
+                    icone: "person.text.rectangle.fill",
+                    inputType: .cpf,
+                    width: UIScreen.main.bounds.width - 50
+                )
+            }
+            Spacer()
+            botaoEntrar
+            Spacer()
+        }
+        
+    }
+}
+
+extension LoginView {
+    var botaoEntrar: some View {
+        Button {
+            if verificaCampoCpf() {
+                UIApplication.shared.fechaTeclado()
+                logaUsuario()
+            }
+        } label: {
+            BotaoPadrao(width: UIScreen.main.bounds.width - 50, txtBotao: "Entrar")
+        }
     }
 }
 
@@ -87,6 +115,8 @@ extension LoginView {
             self.alerta.tipoAlerta = .error(.red)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.alerta.estaMostrando = false
+                self.alerta.txtTitulo = ""
+                self.alerta.txtSubTitulo = ""
             }
             return false
         } else if self.vm.cpfAssociado.count < 11 {
@@ -96,6 +126,8 @@ extension LoginView {
             self.alerta.tipoAlerta = .error(.red)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.alerta.estaMostrando = false
+                self.alerta.txtTitulo = ""
+                self.alerta.txtSubTitulo = ""
             }
             return false
         } else {
@@ -120,6 +152,8 @@ extension LoginView {
                 self.alerta.tipoAlerta = .error(.red)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     self.alerta.estaMostrando = false
+                    self.alerta.txtTitulo = ""
+                    self.alerta.txtSubTitulo = ""
                 }
             }
         }

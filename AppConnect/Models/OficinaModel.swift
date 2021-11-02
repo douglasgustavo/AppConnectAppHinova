@@ -16,15 +16,14 @@ struct OficinaModel: Codable {
 }
 
 struct ListaOficina: Codable {
-    var id: Int
-    var nome, descricao, descricaoCurta, endereco: String?
-    var latitude, longitude, foto: String?
+    var id: String? = UUID().uuidString
+    var nome, descricao, descricaoCurta, endereco, foto: String?
+    var latitude, longitude: String?
     var avaliacaoUsuario, codigoAssociacao: Int?
     var email, telefone1, telefone2: String?
     var ativo: Bool?
 
     enum CodingKeys: String, CodingKey {
-        case id = "Id"
         case nome = "Nome"
         case descricao = "Descricao"
         case descricaoCurta = "DescricaoCurta"

@@ -10,4 +10,5 @@ target 'AppConnect' do
   pod 'AlertToast'
   pod 'ExytePopupView'
   pod 'Kingfisher'
+  pod 'InputMask'
 end

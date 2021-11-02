@@ -2,12 +2,14 @@ PODS:
   - Alamofire (5.4.4)
   - AlertToast (1.3.7)
   - ExytePopupView (1.0.2)
+  - InputMask (6.1.0)
   - Kingfisher (7.1.1)
 
 DEPENDENCIES:
   - Alamofire
   - AlertToast
   - ExytePopupView
+  - InputMask
   - Kingfisher
 
 SPEC REPOS:
@@ -15,14 +17,16 @@ SPEC REPOS:
     - Alamofire
     - AlertToast
     - ExytePopupView
+    - InputMask
     - Kingfisher
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   AlertToast: 8c9d5efb2df6ea728b32b62bce99d876ec3e5393
   ExytePopupView: b365220b2be506f23a4953e61b5b5dfe9c5b2da6
+  InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
   Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
 
-PODFILE CHECKSUM: f75eefef195f76e2107848c5a45bcddcec04af97
+PODFILE CHECKSUM: 1f7bb720fac433acef1eee2e552a6f412970b443
 
 COCOAPODS: 1.11.2

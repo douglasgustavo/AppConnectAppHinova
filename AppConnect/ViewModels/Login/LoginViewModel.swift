@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class LoginViewModel: ObservableObject {
     @Published var erro: Bool = false
@@ -47,4 +48,7 @@ class LoginViewModel: ObservableObject {
         }
         
     }
+    
+    
+    
 }

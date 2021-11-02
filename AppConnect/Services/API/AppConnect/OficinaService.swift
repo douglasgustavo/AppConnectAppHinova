@@ -14,7 +14,7 @@ class OficinaService {
         
         AF.request("\(Constantes.URL_BASE_APPCONNECT)/Api/Oficina?codigoAssociacao=601&cpfAssociado=\(cpfAssociado)",
                    method: .get,
-                   headers: HTTPHeaders(["Content-Type": "application/json"]))
+                   headers: HTTPHeaders([.contentType("application/json")]))
             .responseData { response in
             
             if let data = response.data {

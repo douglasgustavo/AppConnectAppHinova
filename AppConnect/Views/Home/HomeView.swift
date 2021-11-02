@@ -33,6 +33,7 @@ struct HomeView: View {
                 .tag(1)
                     
             }
+            .accentColor(.principal)
             .environmentObject(vm)
             
         }

@@ -1,35 +1,42 @@
 //
-//  OficinasView.swift
+//  NewOficinasView.swift
 //  AppConnect
 //
-//  Created by Douglas Santos on 31/10/21.
+//  Created by Douglas Santos on 02/11/21.
 //
 
 import SwiftUI
 
 struct OficinasView: View {
+    @State var mostrandoOficina: Bool = false
+    
     @StateObject var vm: OficinasViewModel = OficinasViewModel()
     @EnvironmentObject var usuario: UsuarioStateObject
+    @State private var oficinaSelecionada: ListaOficina = ListaOficina()
     
     var body: some View {
         VStack{
+            
             ScrollView(.vertical, showsIndicators: false) {
-                if let listaOficinas = vm.listaOficinas.listaOficinas {
-                    ForEach(0..<listaOficinas.count, id: \.self) { pos in
+                if let oficina = vm.listaOficinas.listaOficinas {
+                    ForEach(0..<oficina.count, id: \.self) { pos in
                         
-                        NavigationLink {
-                            OficinaDetalheView(oficina: listaOficinas[pos])
+                        Button {
+                            self.oficinaSelecionada = oficina[pos]
+                            self.mostrandoOficina.toggle()
                         } label: {
-                            OficinaItemView(imagem: listaOficinas[pos].foto!,
-                                            nome: listaOficinas[pos].nome!,
-                                            descricao: listaOficinas[pos].descricaoCurta!,
-                                            avaliacao: "\(listaOficinas[pos].avaliacaoUsuario!)",
-                                            telefone: listaOficinas[pos].telefone1 ?? "Não possui"
+                            OficinaItemView(
+                                nome: oficina[pos].nome ?? "",
+                                endereco: oficina[pos].endereco ?? "",
+                                telefone1: oficina[pos].telefone1 ?? "",
+                                telefone2: oficina[pos].telefone2 ?? "",
+                                imagem: oficina[pos].foto ?? ""
                             )
-                                .foregroundColor(.black)
-                                .padding(.horizontal)
-                                .padding(.vertical, 5)
-                            
+                                .padding(.bottom, 10)
+                                .frame(width: UIScreen.main.bounds.width)
+                        }
+                        .sheet(isPresented: $mostrandoOficina) {
+                            OficinasDetalheView(oficinaRecebida: self.$oficinaSelecionada)
                         }
                         
                     }
@@ -37,13 +44,12 @@ struct OficinasView: View {
                     Text("Erro ao obter")
                 }
             }
-            
         }
         .environmentObject(vm)
         .onAppear {
-            vm.listarOficinas(cpf: "")
+            vm.listarOficinas(cpf: self.usuario.usuarioLogado.cpf!)
         }
-        .navigationTitle("Oficinas")
+        .navigationTitle("Lista de Oficinas")
         .navigationBarItems(trailing:
          Button(action: {
                     vm.deslogarUsuario()
@@ -55,12 +61,10 @@ struct OficinasView: View {
     }
 }
 
-struct OficinasView_Previews: PreviewProvider {
+struct NewOficinasView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationView{
             OficinasView()
         }
-        
     }
 }
-

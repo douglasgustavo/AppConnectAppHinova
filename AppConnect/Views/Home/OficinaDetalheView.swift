@@ -6,37 +6,238 @@
 //
 
 import SwiftUI
+import MapKit
 
-struct OficinaDetalheView: View {
-    @State var oficina: ListaOficina
+struct OficinasDetalheView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Binding var oficinaRecebida: ListaOficina
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: true) {
-            Image(base64String: oficina.foto!)?
-                .frame(height: UIScreen.main.bounds.height / 3)
-            
-            detalhesOficina
-                .padding(.horizontal)
-            
+        ZStack{
+            mainView
+            btnFechar
         }
-        .navigationTitle(oficina.nome!)
-        .navigationBarTitleDisplayMode(.inline)
-        /* .navigationBarItems(leading:
-         Button(action: {
-            self.presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    HStack (spacing: 2){
-                        Image(systemName: "chevron.backward")
-                        Text("Voltar")
-                    }
-                    .font(.subheadline)
-                    
-                })
-        )*/
     }
 }
 
+extension OficinasDetalheView {
+    var mainView: some View {
+        VStack{
+            headerTelaDetalhesOficina
+            campoDetalhesOficina
+        }
+        .edgesIgnoringSafeArea(.all)
+    }
+}
+
+extension OficinasDetalheView {
+    var headerTelaDetalhesOficina: some View {
+        ZStack{
+            if let fotoOficina = oficinaRecebida.foto {
+            Image(base64String: fotoOficina)!
+                .resizable()
+                .scaledToFit()
+                .frame(width: 200, height: 200)
+            }
+        }
+        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3)
+    }
+}
+
+extension OficinasDetalheView {
+    var campoDetalhesOficina: some View {
+        ZStack{
+            Rectangle()
+                .fill(Color.principal)
+                .cornerRadius(30, corners: [.topLeft, .topRight])
+                .padding(.top, -40)
+            
+            ScrollView(.vertical) {
+                
+                infomacoesPrincipaisOficina
+                informacoesDeContatoOficina
+                descricaoOficina
+                mapaOficina
+            }
+            .padding(.horizontal)
+        }
+        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: -10)
+    }
+}
+
+extension OficinasDetalheView {
+    var infomacoesPrincipaisOficina: some View {
+        VStack (alignment: .leading, spacing: 10) {
+            if let nomeOficina = oficinaRecebida.nome {
+                Text(nomeOficina)
+                    .font(.title)
+                    .foregroundColor(.white)
+            }
+            
+            if let descricaoCurta = oficinaRecebida.descricaoCurta {
+                Text(descricaoCurta)
+                    .font(.title3)
+                    .foregroundColor(.white)
+            }
+            
+            Rectangle()
+                .fill(.white.opacity(0.2))
+                .frame(height: 2)
+        }
+    }
+}
+
+extension OficinasDetalheView {
+    var informacoesDeContatoOficina: some View {
+        VStack (alignment: .leading) {
+            Text("Informações de Contato")
+                .font(.title2)
+                .foregroundColor(.white)
+                .padding(.bottom, 5)
+            
+            HStack{
+                VStack (spacing: 5) {
+                    if let telefone1 = oficinaRecebida.telefone1 {
+                        HStack{
+                            Image(systemName: "phone.fill")
+                                .font(.title3)
+                                .foregroundColor(.white)
+                            
+                            Text(telefone1)
+                                .font(.title3)
+                                .foregroundColor(.white)
+                        }
+                    }
+                    
+                    if let telefone2 = oficinaRecebida.telefone2 {
+                        HStack{
+                            Image(systemName: "phone.fill")
+                                .font(.title3)
+                                .foregroundColor(.white)
+                            
+                            Text(telefone2)
+                                .font(.title3)
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                .frame(width: UIScreen.main.bounds.width / 2.2, alignment: .leading)
+                classificacaoOficina
+            }
+            HStack{
+                Image(systemName: "envelope.fill")
+                    .font(.title3)
+                    .foregroundColor(.white)
+                
+                if let email = oficinaRecebida.email {
+                    Text(email)
+                        .foregroundColor(.white)
+                        .accentColor(.white)
+                        .font(.title3)
+                }
+                Spacer()
+            }
+        }
+        
+        .padding(.bottom)
+    }
+}
+
+extension OficinasDetalheView {
+    var classificacaoOficina: some View {
+        VStack {
+            HStack{
+                Image(systemName: "star.fill")
+                    .font(.title3)
+                    .foregroundColor(.yellow)
+                
+                if let avaliacao = oficinaRecebida.avaliacaoUsuario {
+                    Text("Avaliação: \(avaliacao)")
+                        .font(.title3)
+                        .foregroundColor(.white)
+                }
+            }
+            Spacer()
+        }
+        .frame(width: UIScreen.main.bounds.width / 2.3, height: 50 , alignment: .leading)
+    }
+}
+
+extension OficinasDetalheView {
+    var descricaoOficina: some View {
+        VStack(alignment: .leading){
+            Text("Descrição")
+                .font(.title2)
+                .foregroundColor(.white)
+                .padding(.bottom)
+            
+            if let descricao = oficinaRecebida.descricao {
+                Text(descricao)
+                    .foregroundColor(.white)
+            }
+        }
+    }
+}
+
+extension OficinasDetalheView {
+    var mapaOficina: some View {
+        VStack(alignment: .leading, spacing: 10){
+            
+            Text("Localização no Mapa")
+                .font(.title2)
+                .foregroundColor(.white)
+            
+            if let latitude = oficinaRecebida.latitude {
+                if let longitude = oficinaRecebida.longitude {
+                    MapaView(latitude: Double(latitude)!, longitude: Double(longitude)!)
+                        .cornerRadius(15)
+                }
+            }
+            
+        }
+        .frame(width: UIScreen.main.bounds.width - 50, height: 200)
+        .padding(.bottom, 50)
+    }
+}
+
+extension OficinasDetalheView {
+    var btnFechar: some View {
+        HStack{
+            Spacer()
+            VStack{
+                Spacer()
+                Button {
+                    self.presentationMode.wrappedValue.dismiss()
+                } label: {
+                    ZStack{
+                        Circle()
+                            .fill(Color.white)
+                            .frame(width: 60, height: 60)
+                            .shadow(color: .black.opacity(0.4), radius: 5, x: 5, y: 5)
+                        
+                        Image(systemName: "xmark")
+                            .font(.system(size: 30, weight: .bold, design: .default))
+                            .foregroundColor(.principal)
+                    }
+                    .padding(30)
+                }
+            }
+        }
+    }
+}
+
+struct OficinasDetalheView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            //OficinasDetalheView()
+        }
+    }
+}
+
+
+
+
+/*
 struct OficinaDetalheView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
@@ -44,41 +245,4 @@ struct OficinaDetalheView_Previews: PreviewProvider {
         }
     }
 }
-
-extension OficinaDetalheView {
-    var detalhesOficina: some View {
-        VStack (spacing: 15){
-            
-            HStack{
-                Image(systemName: "map")
-                Text(oficina.endereco ?? "")
-                    .font(.callout)
-                Spacer()
-            }
-            
-            HStack{
-                Image(systemName: "envelope")
-                Text(oficina.email ?? "")
-                    .font(.callout)
-                Spacer()
-            }
-            
-            HStack{
-                if let telefone1 = oficina.telefone1 {
-                    Spacer()
-                    Image(systemName: "phone")
-                    Text(telefone1)
-                        .font(.title3)
-                }
-                Spacer()
-                if let telefone2 = oficina.telefone1 {
-                    Image(systemName: "phone")
-                    Text(telefone2)
-                        .font(.title3)
-                    Spacer()
-                }
-            }
-            Text(oficina.descricao!)
-        }
-    }
-}
+*/

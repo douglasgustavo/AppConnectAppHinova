@@ -8,9 +8,9 @@
 import Foundation
 
 class IndicacaoViewModel: ObservableObject {
-    @Published var nomeAmigo: String = "Douglas"
-    @Published var telefoneAmigo: String = "3199999999"
-    @Published var emailAmigo: String = "douglas@hinova.com.br"
+    @Published var nomeAmigo: String = ""
+    @Published var telefoneAmigo: String = ""
+    @Published var emailAmigo: String = ""
     
     let service: IndicacaoService = IndicacaoService()
     let assocService: AssociadoService = AssociadoService()
