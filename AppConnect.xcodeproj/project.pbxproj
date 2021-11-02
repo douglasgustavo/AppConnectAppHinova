@@ -36,6 +36,7 @@
 		A51E104B272ED8BA00FFC951 /* UsuarioStateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E104A272ED8BA00FFC951 /* UsuarioStateObject.swift */; };
 		A51E104D272ED9D300FFC951 /* AlertaStateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E104C272ED9D300FFC951 /* AlertaStateObject.swift */; };
 		A5B85F162731CEDF00404873 /* MapaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B85F152731CEDF00404873 /* MapaView.swift */; };
+		A5B85F192731F64B00404873 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B85F182731F64B00404873 /* Launch Screen.storyboard */; };
 		A5C5911A272EDC2200FEB602 /* OficinasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C59119272EDC2200FEB602 /* OficinasViewModel.swift */; };
 		A5C5911C272EDE9300FEB602 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C5911B272EDE9300FEB602 /* MainViewModel.swift */; };
 		A5C59121272EE9B800FEB602 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C59120272EE9B800FEB602 /* Constantes.swift */; };
@@ -83,6 +84,8 @@
 		A51E104A272ED8BA00FFC951 /* UsuarioStateObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsuarioStateObject.swift; sourceTree = "<group>"; };
 		A51E104C272ED9D300FFC951 /* AlertaStateObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertaStateObject.swift; sourceTree = "<group>"; };
 		A5B85F152731CEDF00404873 /* MapaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaView.swift; sourceTree = "<group>"; };
+		A5B85F172731F61E00404873 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A5B85F182731F64B00404873 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A5C59119272EDC2200FEB602 /* OficinasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OficinasViewModel.swift; sourceTree = "<group>"; };
 		A5C5911B272EDE9300FEB602 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		A5C59120272EE9B800FEB602 /* Constantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 		A51E100F272ECE5E00FFC951 /* AppConnect */ = {
 			isa = PBXGroup;
 			children = (
+				A5B85F172731F61E00404873 /* Info.plist */,
 				A51E101F272ECFE900FFC951 /* Views */,
 				A51E1020272ECFEE00FFC951 /* ViewModels */,
 				A51E101E272ECFE500FFC951 /* Models */,
@@ -177,6 +181,7 @@
 				A5C59120272EE9B800FEB602 /* Constantes.swift */,
 				A51E1014272ECE6000FFC951 /* Assets.xcassets */,
 				A51E1016272ECE6000FFC951 /* Preview Content */,
+				A5B85F182731F64B00404873 /* Launch Screen.storyboard */,
 			);
 			path = AppConnect;
 			sourceTree = "<group>";
@@ -438,6 +443,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5B85F192731F64B00404873 /* Launch Screen.storyboard in Resources */,
 				A51E1018272ECE6000FFC951 /* Preview Assets.xcassets in Resources */,
 				A51E1015272ECE6000FFC951 /* Assets.xcassets in Resources */,
 			);
@@ -660,15 +666,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppConnect/Preview Content\"";
 				DEVELOPMENT_TEAM = TKWP3RAB75;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppConnect/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -691,15 +701,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AppConnect/Preview Content\"";
 				DEVELOPMENT_TEAM = TKWP3RAB75;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppConnect/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
